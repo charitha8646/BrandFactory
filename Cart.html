@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart</title>
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* Your existing styles here */
+        .cart-container {
+            margin-top: 20px;
+        }
+
+        .cart-item {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            padding: 10px;
+        }
+
+        .cart-item img {
+            width: 100px;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+
+        .cart-item-details {
+            flex-grow: 1;
+        }
+
+        .cart-item button {
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <div class="container"> 
+        <div class="navbar">
+            <div class="logo">
+                <img src="images/LOGO.png" width="125px">
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="Home.html">Home</a></li>
+                    <li><a href="Products.html">Products</a></li>
+                    <li><a href="Cart.html">Cart</a></li>
+                    <li><a href="History.html">History</a></li>
+                </ul>
+            </nav>
+            <img src="images/cart.png" width="30px" height="30px">
+        </div>
+    </div>
+</div>
+
+<div class="small-container cart-container">
+    <h2 class="title">Shopping Cart</h2>
+
+    <div class="row">
+        <!-- Cart items will be dynamically added here using JavaScript -->
+    </div>
+</div>
+
+<script>
+    // Fetch the cart from localStorage
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    // Reference to the cart container in the HTML
+    const cartContainer = document.querySelector('.cart-container');
+
+    // Populate the cart items in the HTML
+    cart.forEach(item => {
+        const cartItem = document.createElement('div');
+        cartItem.classList.add('col-4', 'cart-item');
+
+        cartItem.innerHTML = `
+            <img src="images/${item.productId}.jpg" alt="Product Image">
+            <div class="cart-item-details">
+                <h4>${item.name}</h4>
+                <p>RS: ${item.price}</p>
+                <p>Quantity: ${item.quantity}</p>
+                <button onclick="removeFromCart(${item.productId})">Remove</button>
+            </div>
+        `;
+
+        cartContainer.appendChild(cartItem);
+    });
+
+    // Function to remove an item from the cart
+    function removeFromCart(productId) {
+        // Update the cart array
+        cart = cart.filter(item => item.productId !== productId);
+
+        // Save the updated cart to localStorage
+        localStorage.setItem('cart', JSON.stringify(cart));
+
+        // Refresh the page to reflect changes
+        location.reload();
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products</title>
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* Your existing styles here */
+        .col-4 {
+            flex: 0 0 48%;
+            max-width: 48%;
+            margin: 1%;
+        }
+
+        .col-4 img {
+            width: 50%;
+            border-radius: 5px;
+        }
+
+        .col-4 button {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <div class="container"> 
+        <div class="navbar">
+            <div class="logo">
+                <img src="images/LOGO.png" width="125px">
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="Home.html">Home</a></li>
+                    <li><a href="Products.html">Products</a></li>
+                    <li><a href="Cart.html">Cart</a></li>
+                    <li><a href="History.html">History</a></li>
+                </ul>
+            </nav>
+            <img src="images/cart.png" width="30px" height="30px">
+        </div>
+    </div>
+</div>
+
+<div class="small-container">
+    <h2 class="title">Products</h2>
+
+    <!-- Sample product items with buttons to add to cart -->
+    <div class="row">
+        <div class="col-4" id="product-1">
+            <img src="images/product-1.jpg" alt="Product Image">
+            <h4>Red Shirt</h4>
+            <p>RS: 500</p>
+            <label for="quantity-1">Quantity:</label>
+            <input type="number" id="quantity-1" class="quantity-input" value="1">
+            <button onclick="addToCart('Red Shirt', 500, 'product-1')">Add to Cart</button>
+        </div>
+
+        <div class="col-4" id="product-2">
+            <img src="images/product-2.jpg" alt="Product Image">
+            <h4>Denim Jeans</h4>
+            <p>RS: 700</p>
+            <label for="quantity-2">Quantity:</label>
+              <input type="number" id="quantity-2" class="quantity-input" value="1">
+            <button onclick="addToCart('Denim Jeans', 700, 'product-2')">Add to Cart</button>
+        </div>
+
+        <div class="col-4" id="product-3">
+            <img src="images/product-3.jpg" alt="Product Image">
+            <h4>Black Jacket</h4>
+            <p>RS: 1,000</p>
+            <label for="quantity-3">Quantity:</label>
+            <input type="number" id="quantity-3" class="quantity-input" value="1">
+            <button onclick="addToCart('Black Jacket', 1000, 'product-3')">Add to Cart</button>
+        </div>
+        <!-- ... (Previous HTML code) ... -->
+<div class="col-4" id="product-4">
+  <img src="images/product-4.jpg" alt="Product Image">
+  <h4>White Sneakers</h4>
+  <p>RS: 800</p>
+  <label for="quantity-4">Quantity:</label>
+  <input type="number" id="quantity-4" class="quantity-input" value="1">
+  <button onclick="addToCart('White Sneakers', 800, 'product-4')">Add to Cart</button>
+</div>
+
+<div class="col-4" id="product-5">
+  <img src="images/product-5.jpg" alt="Product Image">
+  <h4>Printed Dress</h4>
+  <p>RS: 1,500</p>
+  <label for="quantity-5">Quantity:</label>
+  <input type="number" id="quantity-5" class="quantity-input" value="1">
+  <button onclick="addToCart('Printed Dress', 1500, 'product-5')">Add to Cart</button>
+</div>
+
+<div class="col-4" id="product-6">
+  <img src="images/product-6.jpg" alt="Product Image">
+  <h4>Leather Boots</h4>
+  <p>RS: 2,200</p>
+  <label for="quantity-6">Quantity:</label>
+  <input type="number" id="quantity-6" class="quantity-input" value="1">
+  <button onclick="addToCart('Leather Boots', 2200, 'product-6')">Add to Cart</button>
+</div>
+<!-- ... (Previous HTML code) ... -->
+
+<div class="col-4" id="product-7">
+  <img src="images/product-7.jpg" alt="Product Image">
+  <h4>Striped Shirt</h4>
+  <p>RS: 900</p>
+  <label for="quantity-7">Quantity:</label>
+  <input type="number" id="quantity-7" class="quantity-input" value="1">
+  <button onclick="addToCart('Striped Shirt', 900, 'product-7')">Add to Cart</button>
+</div>
+
+<div class="col-4" id="product-8">
+  <img src="images/product-8.jpg" alt="Product Image">
+  <h4>Denim Skirt</h4>
+  <p>RS: 1,300</p>
+  <label for="quantity-8">Quantity:</label>
+  <input type="number" id="quantity-8" class="quantity-input" value="1">
+  <button onclick="addToCart('Denim Skirt', 1300, 'product-8')">Add to Cart</button>
+</div>
+
+<!-- ... (Remaining HTML code) ... -->
+
+<!-- Add more product items as needed -->
+
+<!-- ... (Remaining HTML code) ... -->
+
+        <!-- Add more product items as needed -->
+    </div>
+</div>
+<script>
+  // Sample product data
+  const products = [
+      { productId: 1, name: 'Red Printed Shirt', price: 1000 },
+      { productId: 2, name: 'Blue Denim Jeans', price: 1200 },
+      // Add more products as needed
+  ];
+
+  // Reference to the product container in the HTML
+  const productItemsContainer = document.getElementById('product-items-container');
+
+  // Populate the product items in the HTML
+  function populateProductItems() {
+      // Clear existing items in the product container
+      productItemsContainer.innerHTML = '';
+
+      products.forEach(product => {
+          const productItem = document.createElement('div');
+          productItem.classList.add('col-4', 'product-item');
+
+          productItem.innerHTML = `
+              <img src="images/product-${product.productId}.jpg" alt="Product Image">
+              <h4>${product.name}</h4>
+              <p>RS: ${product.price}</p>
+              <label for="quantity-${product.productId}">Quantity:</label>
+              <input type="number" class="quantity-input" id="quantity-${product.productId}" value="1">
+              <button onclick="addToCart(${product.productId})">Add to Cart</button>
+          `;
+
+          productItemsContainer.appendChild(productItem);
+      });
+  }
+
+  // Function to add an item to the cart
+  function addToCart(productId) {
+      const quantity = parseInt(document.getElementById(`quantity-${productId}`).value);
+      const product = products.find(p => p.productId === productId);
+
+      // Fetch the cart from localStorage
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+      // Check if the item is already in the cart
+      let existingItem = cart.find(item => item.productId === productId);
+
+      if (existingItem) {
+          // If the item is already in the cart, increase the quantity
+          existingItem.quantity += quantity;
+      } else {
+          // If the item is not in the cart, add it
+          cart.push({
+              productId: productId,
+              name: product.name,
+              price: product.price,
+              quantity: quantity
+          });
+      }
+
+      // Save the updated cart to localStorage
+      localStorage.setItem('cart', JSON.stringify(cart));
+
+      // Optionally, update the cart count in the UI
+      updateCartCount();
+
+      // You can add additional logic here, such as showing a confirmation message
+      console.log(`${product.name} added to cart`);
+  }
+
+  // Function to update the cart count in the UI
+  function updateCartCount() {
+      // Fetch the cart from localStorage
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+      // Calculate the total quantity in the cart
+      let totalQuantity = cart.reduce((total, item) => total + item.quantity, 0);
+
+      // Update the cart count in the UI
+      // For example, you can display the count in the cart icon
+      document.querySelector('.navbar img').setAttribute('title', `Cart (${totalQuantity})`);
+  }
+
+  // Initial population of product items
+  populateProductItems();
+</script>
+
+
+</body>
+</html>
